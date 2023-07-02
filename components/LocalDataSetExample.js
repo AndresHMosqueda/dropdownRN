@@ -5,6 +5,8 @@ import {generateDataSet} from '../helpers';
 
 export const LocalDataSetExample = memo(() => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [realValue, setRealValue] = useState(null);
+  const [isEditing, setIsEditing] = useState(null);
 
   const dataSet = useMemo(generateDataSet, []);
 
@@ -15,53 +17,67 @@ export const LocalDataSetExample = memo(() => {
   //   }),
   // );
 
+  const handleChangeText = (text, props) => {
+    console.log('handleChangeText mejorado!', props.onChangeText);
+    if (Platform.OS === 'android') {
+      setIsEditing(true);
+      props.onChangeText(text);
+      setIsEditing(false);
+    } else {
+      props.onChangeText(text);
+    }
+  };
+
+  console.log('isEditing__', isEditing);
   const MyComponent = memo(
     forwardRef((props, ref) => {
-      const ellipsizedText = text => {
-        const maxLength = 29;
-        let result = text;
-        if (text.length > maxLength && Platform.OS === 'android') {
-          // Add ellipsis by appending '...'
-          result = text.substring(0, maxLength - 3) + '...';
-        }
-        return result;
-      };
+      console.log('props.style!', props.style);
       return (
-        <TextInput
-          {...props}
-          ref={ref}
-          onChangeText={props.onChangeText}
-          autoCorrect={false}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          // allowFontScaling={true}
-          textBreakStrategy={'balanced'}
-          value={ellipsizedText(props.value)}
-        />
+        <>
+          <TextInput
+            {...props}
+            ref={ref}
+            // onChangeText={props.onChangeText}
+            // onChangeText={text => handleChangeText(text, props)}
+            // onBlur={props.onBlur}
+            // onFocus={props.onFocus}
+            // value={isEditing ? props.value : ellipsizedText(props.value)}
+          />
+        </>
       );
     }),
   );
 
   return (
     <>
+      <Text
+        numberOfLines={1}
+        ellipsizeMode="tail"
+        style={{
+          color: '#668',
+          fontSize: 13,
+          paddingTop: 30,
+          paddingBottom: 20,
+        }}>
+        {selectedItem?.title}
+      </Text>
       <AutocompleteDropdown
+        autoCorrect={false}
         clearOnFocus={false}
-        closeOnBlur={true}
-        initialValue={'0'}
-        // or initialValue={{id: '0'}}
-        onSelectItem={setSelectedItem}
+        closeOnBlur={false}
         dataSet={dataSet}
-        showChevron={true}
         emptyResultText="Nothing we!"
-        InputComponent={MyComponent}
         ItemSeparatorComponent={
           <View
             style={{height: 1, width: '100%', backgroundColor: '#d8e1e6'}}
           />
         }
-        containerStyle={{
-          backgroundColor: 'yellow',
-        }}
+        showChevron={false}
+        showClear={false}
+        // or initialValue={{id: '0'}}
+        initialValue={'0'}
+        onSelectItem={setSelectedItem}
+        // InputComponent={MyComponent}
         renderItem={(item, text) => (
           <Text style={{color: 'purple', padding: 15}}>{item.title}</Text>
         )}

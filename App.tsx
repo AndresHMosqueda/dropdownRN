@@ -13,11 +13,6 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { LocalDataSetExample } from './components/LocalDataSetExample'
-import { LocalDataSetExample2 } from './components/LocalDataSetExample2'
-import { RemoteDataSetExample3 } from './components/RemoteDataSetExample3'
-import { RemoteDataSetExample } from './components/RemoteDataSetExample'
-import { RemoteDataSetExample2 } from './components/RemoteDataSetExample2'
-import { CustomRightIconExample } from './components/CustomRightIconExample'
 import { AutocompleteDropdownContextProvider } from 'react-native-autocomplete-dropdown'
 
 const App = () => {
@@ -29,7 +24,6 @@ const App = () => {
 
   return (
     <AutocompleteDropdownContextProvider>
-      <SafeAreaView style={(backgroundStyle, { flex: 1 })}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -51,7 +45,6 @@ const App = () => {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-      </SafeAreaView>
     </AutocompleteDropdownContextProvider>
   )
 }
