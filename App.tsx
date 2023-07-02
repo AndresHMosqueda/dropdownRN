@@ -48,26 +48,6 @@ const App = () => {
                 <Text style={styles.sectionTitle}>Local list</Text>
                 <LocalDataSetExample />
               </View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Local list customization</Text>
-                <LocalDataSetExample2 />
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Remote list</Text>
-                <RemoteDataSetExample />
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Remote list customization</Text>
-                <RemoteDataSetExample2 />
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Remote list customization 2</Text>
-                <RemoteDataSetExample3 />
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Custom Right Icon Example</Text>
-                <CustomRightIconExample />
-              </View>
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
