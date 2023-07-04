@@ -110,10 +110,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5ecf2',
     borderRadius: 5,
     paddingHorizontal: 13,
-    height: 100,
+    height: 50,
     justifyContent: 'center',
     alignContent:'center',
     alignItems:'center',
+    paddingHorizontal: 20,
   },
   dropdownButtonText: {
     fontSize: 16,
