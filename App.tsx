@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,66 +8,78 @@ import {
   useColorScheme,
   View,
   Platform,
-  KeyboardAvoidingView
-} from 'react-native'
+  KeyboardAvoidingView,
+} from 'react-native';
+import {generateDataSet} from './helpers';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen'
-import { LocalDataSetExample } from './components/LocalDataSetExample'
-import { AutocompleteDropdownContextProvider } from 'react-native-autocomplete-dropdown'
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {LocalDataSetExample} from './components/LocalDataSetExample';
+import CustomDropDown from './components/CustomDropDown';
+import CustomDropDownLine from './components/CustomDropDownLine';
+import {AutocompleteDropdownContextProvider} from 'react-native-autocomplete-dropdown';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark'
+  const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
-  }
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  const options = [
+    'ABCDEFGHIJ102900299800000ABCDEFGHIJ1029002998000000',
+    'ABCDEFGHIJ102900299800000ABCDEFGHIJ1029002998000001',
+    'ABCDEFGHIJ102900299800000ABCDEFGHIJ1029002998000002',
+  ];
+
+  const dataSet = useMemo(generateDataSet, []);
+
+  const newArray = dataSet.map(obj => obj.title);
 
   return (
     <AutocompleteDropdownContextProvider>
+      <SafeAreaView style={(backgroundStyle, {flex: 1})}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <KeyboardAvoidingView
-          style={{ flex: 1 }}
+          style={{flex: 1}}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           enabled>
-          <ScrollView
-            nestedScrollEnabled
-            keyboardDismissMode="on-drag"
-            keyboardShouldPersistTaps="handled"
-            contentInsetAdjustmentBehavior="automatic"
-            contentContainerStyle={{ paddingBottom: 0 }}
-            style={styles.scrollContainer}>
-            <View style={styles.container}>
-              <Text style={styles.title}>Autocomplete dropdown</Text>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Local list</Text>
-                <LocalDataSetExample />
-              </View>
+          <View style={styles.container}>
+            <Text style={styles.title}>Autocomplete dropdown</Text>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Local list</Text>
+              <LocalDataSetExample />
             </View>
-          </ScrollView>
+            <View style={styles.section}>
+              <CustomDropDown options={dataSet} />
+            </View>
+          </View>
         </KeyboardAvoidingView>
+      </SafeAreaView>
     </AutocompleteDropdownContextProvider>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1
+    flex: 1,
   },
   container: {
-    padding: 20
+    padding: 20,
+    flex: 1,
   },
   title: {
     textAlign: 'center',
     fontSize: 25,
-    marginBottom: 50
+    marginBottom: 50,
   },
   section: {
-    marginBottom: 40
+    marginBottom: 40,
+    flex: 1,
   },
   sectionTitle: {
     fontWeight: 'bold',
-    marginBottom: 3
-  }
-})
+    marginBottom: 3,
+  },
+});
 
-export default App
+export default App;

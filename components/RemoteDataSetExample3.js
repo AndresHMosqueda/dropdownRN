@@ -91,14 +91,12 @@ export const RemoteDataSetExample3 = memo(() => {
           }}
           suggestionsListContainerStyle={{
             backgroundColor: '#fff'
-            // backgroundColor: 'yellow'
           }}
           containerStyle={{ flexGrow: 1, flexShrink: 1 }}
           renderItem={(item, text) => {
             console.log(text)
             return (
               <Text style={{ color: '#383b42', padding: 15 }}>
-              {/* <Text style={{ color: 'red', padding: 15 }}> */}
                 ({text}) - {item.title}
               </Text>
             )
