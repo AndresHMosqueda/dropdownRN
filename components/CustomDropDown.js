@@ -43,20 +43,27 @@ const Dropdown = ({options}) => {
     <View>
       <View
         style={{
-          display: 'flex',
+          // justifyContent: 'center', // For aligning vertically
+          // alignContent:'center',
+
+          // flexDirection: 'row',
+          // justifyContent: 'center',
+          // alignContent:'center',
+          // alignItems:'center',
         }}>
         <Pressable style={styles.dropdownButton} onPress={handleToggle}>
-          <Text
-            ellipsizeMode="tail"
-            numberOfLines={1}
-            style={styles.dropdownButtonText}>
-            {selectedOption || 'Select an option'}
-            <View
-              style={{
-                display: 'flex',
-              }}></View>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={styles.dropdownButtonText}>
+              {selectedOption || 'Select an option'}
+            </Text>
             <Text style={styles.icon}>{isOpen ? '\u25B2' : '\u25BC'}</Text>
-          </Text>
+          </View>
         </Pressable>
       </View>
 
@@ -102,13 +109,16 @@ const styles = StyleSheet.create({
   dropdownButton: {
     backgroundColor: '#e5ecf2',
     borderRadius: 5,
-    justifyContent: 'center',
     paddingHorizontal: 13,
-    height: 50,
+    height: 100,
+    justifyContent: 'center',
+    alignContent:'center',
+    alignItems:'center',
   },
   dropdownButtonText: {
     fontSize: 16,
     color: '#333',
+    alignContent:'center',
   },
   dropdownOptions: {
     backgroundColor: '#fff',
@@ -123,13 +133,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15.46,
     elevation: 20,
   },
-  icon: {
-    flex: 1,
-    display: 'flex',
-    fontSize: 16,
-    marginLeft: 35,
-    textAlign: 'right',
-  },
+  icon: {},
   inputField: {
     paddingHorizontal: 13,
     fontSize: 16,
