@@ -13,8 +13,8 @@ import {
 import {generateDataSet} from './helpers';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {LocalDataSetExample} from './components/LocalDataSetExample';
 import CustomDropDown from './components/CustomDropDown';
+import {LocalDataSetExample} from './components/LocalDataSetExample';
 import CustomDropDownLine from './components/CustomDropDownLine';
 import {AutocompleteDropdownContextProvider} from 'react-native-autocomplete-dropdown';
 
@@ -36,26 +36,33 @@ const App = () => {
   const newArray = dataSet.map(obj => obj.title);
 
   return (
-    <AutocompleteDropdownContextProvider>
-      <SafeAreaView style={(backgroundStyle, {flex: 1})}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <KeyboardAvoidingView
-          style={{flex: 1}}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          enabled>
-          <View style={styles.container}>
-            <Text style={styles.title}>Autocomplete dropdown</Text>
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Local list</Text>
-              <LocalDataSetExample />
-            </View>
-            <View style={styles.section}>
-              <CustomDropDown options={dataSet} />
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </AutocompleteDropdownContextProvider>
+    // <AutocompleteDropdownContextProvider>
+    //   <SafeAreaView style={(backgroundStyle, {flex: 1})}>
+    //     <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    //     <KeyboardAvoidingView
+    //       style={{flex: 1}}
+    //       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    //       enabled>
+    //       <View style={styles.container}>
+    //         <Text style={styles.title}>Autocomplete dropdown</Text>
+    //         <View style={styles.section}>
+    //           <Text style={styles.sectionTitle}>Third party</Text>
+    //           <LocalDataSetExample />
+    //         </View>
+    //       </View>
+    //     </KeyboardAvoidingView>
+    //   </SafeAreaView>
+    // </AutocompleteDropdownContextProvider>
+    // <View style={styles.container}>
+    //   <View style={styles.section}>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        <Text style={styles.sectionTitle}>Custom component</Text>
+        <CustomDropDown options={dataSet} />
+      </View>
+    </SafeAreaView>
+    // </View>
+    // </View>
   );
 };
 
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 40,
-    flex: 1,
+    // flex: 1,
   },
   sectionTitle: {
     fontWeight: 'bold',

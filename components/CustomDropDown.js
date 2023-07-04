@@ -40,32 +40,18 @@ const Dropdown = ({options}) => {
   );
 
   return (
-    <View>
-      <View
-        style={{
-          // justifyContent: 'center', // For aligning vertically
-          // alignContent:'center',
-
-          // flexDirection: 'row',
-          // justifyContent: 'center',
-          // alignContent:'center',
-          // alignItems:'center',
-        }}>
-        <Pressable style={styles.dropdownButton} onPress={handleToggle}>
-          <View
-            style={{
-              flexDirection: 'row',
-            }}>
-            <Text
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              style={styles.dropdownButtonText}>
-              {selectedOption || 'Select an option'}
-            </Text>
-            <Text style={styles.icon}>{isOpen ? '\u25B2' : '\u25BC'}</Text>
-          </View>
-        </Pressable>
-      </View>
+    <View style={styles.container}>
+      <Pressable style={styles.dropdownButton} onPress={handleToggle}>
+        <View style={styles.textContainer}>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={styles.selectedOption}>
+            {selectedOption || 'Select an option'}
+          </Text>
+          <Text style={styles.icon}>{isOpen ? '\u25B2' : '\u25BC'}</Text>
+        </View>
+      </Pressable>
 
       {isOpen && (
         <View style={styles.dropdownOptions}>
@@ -86,11 +72,11 @@ const Dropdown = ({options}) => {
             keyExtractor={item => item.id}
             contentContainerStyle={styles.optionsContainer}
             ListEmptyComponent={NothingFound}
-            getItemLayout={(data, index) => ({
-              length: 50,
-              offset: 50 * index,
-              index,
-            })}
+            // getItemLayout={(data, index) => ({
+            //   length: 50,
+            //   offset: 50 * index,
+            //   index,
+            // })}
           />
         </View>
       )}
@@ -103,27 +89,28 @@ const Dropdown = ({options}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
-    // marginVertical: 2,
+    flex: 1,
+  },
+  textContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   dropdownButton: {
     backgroundColor: '#e5ecf2',
     borderRadius: 5,
-    paddingHorizontal: 13,
     height: 50,
-    justifyContent: 'center',
-    alignContent:'center',
-    alignItems:'center',
+    paddingHorizontal: 13,
     paddingHorizontal: 20,
+    justifyContent: 'center',
   },
-  dropdownButtonText: {
+  selectedOption: {
     fontSize: 16,
     color: '#333',
-    alignContent:'center',
+    textAlignVertical: 'center',
+    width: '90%',
   },
   dropdownOptions: {
     backgroundColor: '#fff',
-    width: '100%',
     borderRadius: 5,
     shadowColor: '#00000099',
     shadowOffset: {
@@ -133,20 +120,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 15.46,
     elevation: 20,
+    marginTop: 4,
+    backgroundColor: "yellow"
   },
   icon: {},
-  inputField: {
-    paddingHorizontal: 13,
-    fontSize: 16,
-  },
-  inputContainerStyle: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: '#e5ecf2',
-    borderRadius: 5,
-  },
   line: {
-    height: 1,
     backgroundColor: '#ccc',
   },
   option: {
