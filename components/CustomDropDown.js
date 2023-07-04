@@ -89,7 +89,8 @@ const Dropdown = ({options}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    height: '41%'
   },
   textContainer: {
     flexDirection: 'row',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15.46,
     elevation: 20,
     marginTop: 4,
-    backgroundColor: "yellow"
+    // backgroundColor: "yellow"
   },
   icon: {},
   line: {
