@@ -33,7 +33,7 @@ const Dropdown = ({options}) => {
     option?.title?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const renderOption = ({item, index}) => (
+  const renderOption = ({item}) => (
     <Pressable style={styles.option} onPress={() => handleOptionSelect(item)}>
       <Text style={styles.optionText}>{item.title}</Text>
     </Pressable>
@@ -72,11 +72,6 @@ const Dropdown = ({options}) => {
             keyExtractor={item => item.id}
             contentContainerStyle={styles.optionsContainer}
             ListEmptyComponent={NothingFound}
-            // getItemLayout={(data, index) => ({
-            //   length: 50,
-            //   offset: 50 * index,
-            //   index,
-            // })}
           />
         </View>
       )}
@@ -89,8 +84,7 @@ const Dropdown = ({options}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    height: '41%'
+    height: '41%',
   },
   textContainer: {
     flexDirection: 'row',
@@ -122,7 +116,6 @@ const styles = StyleSheet.create({
     shadowRadius: 15.46,
     elevation: 20,
     marginTop: 4,
-    // backgroundColor: "yellow"
   },
   icon: {},
   line: {
@@ -138,9 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
   },
-  optionsContainer: {
-    // backgroundColor: 'yellow'
-  },
+  optionsContainer: {},
   searchInput: {
     paddingHorizontal: 10,
     paddingVertical: 5,
