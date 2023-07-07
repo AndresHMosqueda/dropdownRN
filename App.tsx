@@ -58,7 +58,8 @@ const App = () => {
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <Text style={styles.sectionTitle}>Custom component</Text>
-        <CustomDropDown options={dataSet} />
+        <CustomDropDown options={dataSet} defaultValue={3} />
+        {/* <CustomDropDown options={dataSet} /> */}
       </View>
     </SafeAreaView>
     // </View>

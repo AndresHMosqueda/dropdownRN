@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,17 @@ import {
 } from 'react-native';
 import {NothingFound} from './NothingFound';
 
-const Dropdown = ({options}) => {
+const Dropdown = ({options, defaultValue = null}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    if (defaultValue) {
+      const option = options?.find(item => item.id === defaultValue);
+      setSelectedOption(option.title);
+    }
+  }, [defaultValue, options]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
